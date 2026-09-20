@@ -41,13 +41,12 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://agent-resume-ai4-sooty.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
 # ---------------------------------------
 # Directories
 # ---------------------------------------
@@ -166,10 +165,10 @@ def extract_ocr_text(
     extracted_text = []
 
     try:
-        document = fitz.open(str(file_path))
+        document = pymupdf.open(str(file_path))
 
         for page in document:
-            matrix = fitz.Matrix(2, 2)
+            matrix = pymupdf.Matrix(2, 2)
 
             pixmap = page.get_pixmap(
                 matrix=matrix,
