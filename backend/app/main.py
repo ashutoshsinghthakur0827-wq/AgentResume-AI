@@ -1,6 +1,6 @@
 from pathlib import Path
 
-import fitz
+import pymupdf
 import pytesseract
 
 from PIL import Image
@@ -141,7 +141,7 @@ def extract_normal_pdf_text(
     extracted_text = []
 
     try:
-        document = fitz.open(str(file_path))
+        document = pymupdf.open(str(file_path))
 
         for page in document:
             page_text = page.get_text()
