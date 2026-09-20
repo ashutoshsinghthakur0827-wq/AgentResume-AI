@@ -19,3 +19,5 @@ uvicorn==0.53.0
 watchfiles==1.2.0
 websockets==17.1
 PyMuPDF
+Pillow 
+PyMuPDF
