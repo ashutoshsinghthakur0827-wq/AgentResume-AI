@@ -17,9 +17,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 
-from backend.app.services.resume_parser import parse_resume
-from backend.app.services.ats_analyzer import analyze_resume
-from backend.app.services.job_matcher import match_resume_with_job
+from app.services.resume_parser import parse_resume
+from app.services.ats_analyzer import analyze_resume
+from app.services.job_matcher import match_resume_with_job
 
 
 app = FastAPI(
