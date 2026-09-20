@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_BASE =
+  import.meta.env.VITE_API_URL || "https://agentresume-ai-3.onrender.com";
+
 
 const defaultJobDescription = `We are looking for a Full Stack Developer.
 
