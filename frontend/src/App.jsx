@@ -30,6 +30,8 @@ Responsibilities:
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [activePage, setActivePage] = useState("Dashboard");
+  // Mobile navigation state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [resumeText, setResumeText] = useState("");
@@ -366,7 +368,11 @@ function App() {
 
   return (
     <div className={darkMode ? "app dark-mode" : "app light-mode"}>
-      <aside className="sidebar">
+      <aside
+        className={`sidebar ${
+          mobileMenuOpen ? "mobile-sidebar-open" : ""
+       }`}
+      >
         <div className="brand">
           <div className="brand-logo">
             AR
@@ -391,7 +397,10 @@ function App() {
                   ? "nav-item active"
                   : "nav-item"
               }
-              onClick={() => setActivePage(item.name)}
+              onClick={() => {
+                setActivePage(item.name);
+                setMobileMenuOpen(false);
+              }}
             >
               <span className="nav-icon">
                 {item.icon}
@@ -416,7 +425,10 @@ function App() {
               ? "nav-item active"
               : "nav-item"
           }
-          onClick={() => setActivePage("Settings")}
+          onClick={() => {
+            setActivePage("Settings");
+            setMobileMenuOpen(false);
+          }}
         >
           <span className="nav-icon">⚙</span>
           <span>Settings</span>
@@ -459,12 +471,24 @@ function App() {
 
       <main className="main-content">
         <header className="topbar">
-          <div className="mobile-brand">
-            <div className="brand-logo">
-              AR
-            </div>
+          <div className="mobile-header-left">
+            <button
+              className="mobile-menu-button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              ☰
+            </button>
+
+            <div className="mobile-brand">
+              <div className="brand-logo">
+                AR
+              </div>
+
             <strong>AgentResume AI</strong>
           </div>
+        </div>
 
           <div className="breadcrumb">
             Workspace <span>/</span>{" "}
